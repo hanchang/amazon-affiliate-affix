@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: Amazon Affiliate Affix
- * Plugin URI: http://www.szuhanchang.com/amazon-affiliate-affix
+ * Plugin URI: https://github.com/hanchang/amazon-affiliate-affix
  * Description: Wordpress plugin for adding a widget to the sidebar containing Amazon Associate (affiliate) links that affixes as the user scrolls.
  * Version: 0.1
  * Author: Han Chang
