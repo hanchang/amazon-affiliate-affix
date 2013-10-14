@@ -9,7 +9,16 @@
  * License: GPL2
  */
 
+// TODO: REMOVE!!!
+error_reporting(E_ALL);
+
 add_action('widgets_init', create_function('', 'return register_widget("AmazonAffiliateAffix");'));
+add_action('wp_enqueue_scripts', 'amazon_affiliate_affix_add_my_stylesheet');
+
+function amazon_affiliate_affix_add_my_stylesheet() {
+  wp_register_style('amazon-affiliate-affix-style', plugins_url('style.css', __FILE__) );
+  wp_enqueue_style('amazon-affiliate-affix-style');
+}
 
 class AmazonAffiliateAffix extends WP_Widget {
 
@@ -30,12 +39,35 @@ class AmazonAffiliateAffix extends WP_Widget {
 	 * @param array $instance Saved values from database.
 	 */
 	public function widget( $args, $instance ) {
+    $products = $this->aaa_products(get_the_ID());
+
+    if (empty($products)) {
+      return;
+    }
+
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
 		echo $args['before_widget'];
-		if ( ! empty( $title ) )
+
+		if ( ! empty( $title ) ) {
 			echo $args['before_title'] . $title . $args['after_title'];
-		echo __( 'Hello, World!', 'text_domain' );
+    }
+
+    foreach ($products as $product) {
+?>
+      <div class="aaa-product">
+        <h4>
+          <a class="amazon-title" href="<?php echo $product['product_url']; ?>"><?php echo $product['title']; ?></a>
+          <a class="amazon-button" href="<?php echo $product['product_url']; ?>">View on Amazon</a>
+        </h4>
+        <div>
+          <a class="aaa-image" href="<?php echo $product['product_url']; ?>"><img src="<?php echo $product['image_url']; ?>" /></a>
+          <p class="aaa-description"><?php echo $product['description']; ?></p>
+        </div>
+      </div>
+<?php
+    }
+
 		echo $args['after_widget'];
 	}
 
@@ -79,4 +111,39 @@ class AmazonAffiliateAffix extends WP_Widget {
 
 		return $instance;
 	}
-}
+
+  public function aaa_products( $post_id, $action = 'get', $product_url = '' ) {//, $product_name = '', $product_description = '' ) {
+    switch ($action) {
+    case 'update' :
+      if ($product_url) { 
+        add_post_meta( $post_id, 'product_url', $product_url );
+        return true;
+      }
+      else {
+        return false; 
+      }
+      
+      break;
+    case 'get' :
+      return $this->parse_amazon_product_meta(get_post_meta($post_id, 'amazon_product'));
+      break;
+    case 'delete' :
+      delete_post_meta( $post_id, 'product_url', $product_url );
+      break;
+    default :
+      return false;
+      break;
+    } // end switch
+  }
+
+  /* Parses the array of product metadata in each post into a string. */
+  private function parse_amazon_product_meta($product_meta_array) {
+    $retval = array();
+    $headers = array('title', 'description', 'image_url', 'product_url');
+    foreach($product_meta_array as $product_meta) {
+      $tmp = array_map('trim', explode('|', $product_meta));
+      $retval[] = array_combine($headers, $tmp);
+    }
+    return $retval;
+  }
+} // end class

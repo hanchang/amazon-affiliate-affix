@@ -1,0 +1,32 @@
+.aaa-product .amazon-title {
+  color: #00E;
+}
+
+.aaa-product {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0 10px;
+  margin-bottom: 12px;
+}
+
+.aaa-image {
+  float: left;
+  width: 100px;
+  margin-right: 10px;
+}
+
+.aaa-description {
+  font-size: 14px;
+}
+
+.amazon-button {
+  float: right;
+  border: 2px solid #1C408B;
+  color: #000065;
+  text-decoration: none;
+  padding: 0 14px;
+  border-radius: 7px;
+  font-size: 12px;
+  line-height: 24px;
+  background: -webkit-linear-gradient(top, #ffe39f 0%,#ffe39f 36%,#ffc53b 39%,#ffc53b 61%,#bf9228 100%);
+}
