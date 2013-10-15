@@ -1,12 +1,18 @@
-.aaa-product .amazon-title {
-  color: #00E;
+.widget_amazonaffiliateaffix {
+  display: none;
 }
 
 .aaa-product {
+  position: static;
+  width: 360px;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 0 10px;
   margin-bottom: 12px;
+}
+
+.aaa-product .amazon-title {
+  color: #00E;
 }
 
 .aaa-image {
@@ -29,4 +35,9 @@
   font-size: 12px;
   line-height: 24px;
   background: -webkit-linear-gradient(top, #ffe39f 0%,#ffe39f 36%,#ffc53b 39%,#ffc53b 61%,#bf9228 100%);
+}
+@media (min-width: 979px) {
+  .widget_amazonaffiliateaffix {
+    display: block;
+  }
 }

@@ -3,21 +3,22 @@
  * Plugin Name: Amazon Affiliate Affix
  * Plugin URI: https://github.com/hanchang/amazon-affiliate-affix
  * Description: Wordpress plugin for adding a widget to the sidebar containing Amazon Associate (affiliate) links that affixes as the user scrolls.
- * Version: 0.1
+ * Version: 0.2
  * Author: Han Chang
  * Author URI: http://www.szuhanchang.com
  * License: GPL2
  */
 
-// TODO: REMOVE!!!
+// TODO: REMOVE in production!!!
 error_reporting(E_ALL);
 
 add_action('widgets_init', create_function('', 'return register_widget("AmazonAffiliateAffix");'));
-add_action('wp_enqueue_scripts', 'amazon_affiliate_affix_add_my_stylesheet');
+add_action('wp_enqueue_scripts', 'amazon_affiliate_affix_scripts');
 
-function amazon_affiliate_affix_add_my_stylesheet() {
-  wp_register_style('amazon-affiliate-affix-style', plugins_url('style.css', __FILE__) );
+function amazon_affiliate_affix_scripts() {
+  wp_register_style('amazon-affiliate-affix-style', plugins_url('style.css', __FILE__));
   wp_enqueue_style('amazon-affiliate-affix-style');
+  wp_enqueue_script('jquery-affix', plugins_url('affix.js', __FILE__), array('jquery'), false, true);
 }
 
 class AmazonAffiliateAffix extends WP_Widget {
