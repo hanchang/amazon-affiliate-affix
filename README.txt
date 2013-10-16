@@ -15,7 +15,7 @@ sidebar. You should give it a suitable title as well.
 For each post where you want to show Amazon affiliate links, just add a custom
 meta field. The key should be 'amazon_product' and the value should be:
 
-'Product Title | Product Description | Product Image URL | Affiliate link URL'
+'Title | Description | Product Image Affiliate Code | Affiliate Link URL'
 
 Make sure that the pipe character is the delimiter and that it does not appear
 anywhere else. The description can handle HTML as well. You can add as many of

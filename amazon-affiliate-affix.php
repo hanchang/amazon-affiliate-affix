@@ -10,7 +10,7 @@
  */
 
 // TODO: REMOVE in production!!!
-error_reporting(E_ALL);
+// error_reporting(E_ALL);
 
 add_action('widgets_init', create_function('', 'return register_widget("AmazonAffiliateAffix");'));
 add_action('wp_enqueue_scripts', 'amazon_affiliate_affix_scripts');
@@ -62,7 +62,7 @@ class AmazonAffiliateAffix extends WP_Widget {
           <a class="amazon-button" href="<?php echo $product['product_url']; ?>">View on Amazon</a>
         </h4>
         <div>
-          <a class="aaa-image" href="<?php echo $product['product_url']; ?>"><img src="<?php echo $product['image_url']; ?>" /></a>
+          <div class="aaa-image"><?php echo $product['image_code']; ?></div>
           <p class="aaa-description"><?php echo $product['description']; ?></p>
         </div>
       </div>
@@ -140,7 +140,7 @@ class AmazonAffiliateAffix extends WP_Widget {
   /* Parses the array of product metadata in each post into a string. */
   private function parse_amazon_product_meta($product_meta_array) {
     $retval = array();
-    $headers = array('title', 'description', 'image_url', 'product_url');
+    $headers = array('title', 'description', 'image_code', 'product_url');
     foreach($product_meta_array as $product_meta) {
       $tmp = array_map('trim', explode('|', $product_meta));
       $retval[] = array_combine($headers, $tmp);
