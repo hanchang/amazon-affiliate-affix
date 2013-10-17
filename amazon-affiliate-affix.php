@@ -58,8 +58,8 @@ class AmazonAffiliateAffix extends WP_Widget {
 ?>
       <div class="aaa-product">
         <h4>
-          <a class="amazon-title" href="<?php echo $product['product_url']; ?>"><?php echo $product['title']; ?></a>
-          <a class="amazon-button" href="<?php echo $product['product_url']; ?>">View on Amazon</a>
+          <a class="amazon-title" href="<?php echo $product['product_url']; ?>" target="_blank"><?php echo $product['title']; ?></a>
+          <a class="amazon-button" href="<?php echo $product['product_url']; ?>" target="_blank">View on Amazon</a>
         </h4>
         <div>
           <div class="aaa-image"><?php echo $product['image_code']; ?></div>
