@@ -2,6 +2,12 @@
   display: none;
 }
 
+.widget-area a.amazon-button, .widget-area a.amazon-button:hover {
+  text-decoration: none;
+  background-color: none;
+  border: 0;
+}
+
 .aaa-product {
   position: static;
   width: 360px;
@@ -33,7 +39,10 @@
   border-radius: 7px;
   font-size: 12px;
   line-height: 24px;
-  background: -webkit-linear-gradient(top, #ffe39f 0%,#ffe39f 36%,#ffc53b 39%,#ffc53b 61%,#bf9228 100%);
+  background-image: -webkit-linear-gradient(top, #ffe39f 0%,#ffe39f 36%,#ffc53b 39%,#ffc53b 61%,#bf9228 100%);
+  background-image:    -moz-linear-gradient(top, #ffe39f 0%,#ffe39f 36%,#ffc53b 39%,#ffc53b 61%,#bf9228 100%);
+  background-image:     -ms-linear-gradient(top, #ffe39f 0%,#ffe39f 36%,#ffc53b 39%,#ffc53b 61%,#bf9228 100%);
+  background-image:      -o-linear-gradient(top, #ffe39f 0%,#ffe39f 36%,#ffc53b 39%,#ffc53b 61%,#bf9228 100%);
 }
 @media (min-width: 979px) {
   .widget_amazonaffiliateaffix {
